@@ -1,0 +1,6 @@
+[submodule "Dependencies/Third-Party/raylib-4.5.0"]
+	path = Dependencies/Third-Party/raylib-4.5.0
+	url = https://github.com/raysan5/raylib.git
+[submodule "Dependencies/Third-Party/raylib-cpp-4.5.0"]
+	path = Dependencies/Third-Party/raylib-cpp-4.5.0
+	url = https://github.com/RobLoach/raylib-cpp.git
