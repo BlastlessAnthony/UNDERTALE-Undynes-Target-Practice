@@ -9,12 +9,18 @@ if (APPLE)
         COMMAND ${CMAKE_COMMAND} -E make_directory "${CMAKE_BINARY_DIR}/${PROJECT_NAME}.app/Contents/Resources"
     )
 
+    set(BUNDLE_PLIST_PATH "${PROJECT_ASSETS_DIR}/Darwin/Info.plist")
+    set(BUNDLE_ICON_PATH "${PROJECT_ASSETS_DIR}/Darwin/Icon.icns")
+
     #Copy important stuff
-    add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD 
+    add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy ${BUNDLE_PLIST_PATH} "${CMAKE_BINARY_DIR}/${PROJECT_NAME}.app/Contents"
         COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${PROJECT_NAME}> "${CMAKE_BINARY_DIR}/${PROJECT_NAME}.app/Contents/MacOS"
         COMMAND ${CMAKE_COMMAND} -E copy ${RAYLIB_LIBS} "${CMAKE_BINARY_DIR}/${PROJECT_NAME}.app/Contents/Frameworks"
-        COMMAND ${CMAKE_COMMAND} -E copy ${PROJECT_ASSETS} "${CMAKE_BINARY_DIR}/${PROJECT_NAME}.app/Contents/Resources"
+        COMMAND ${CMAKE_COMMAND} -E copy ${PROJECT_ASSETS} ${BUNDLE_ICON_PATH} "${CMAKE_BINARY_DIR}/${PROJECT_NAME}.app/Contents/Resources"
     )
+
+    
 
 elseif (LINUX)
 

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>LSMinimumSystemVersion</key>
+	<string>10.15</string>
+	<key>CFBundleDisplayName</key>
+	<string>Undyne&apos;s Target Practice</string>
+	<key>CFBundleIconFile</key>
+	<string>Icon.icns</string>
+	<key>CFBundleIconName</key>
+	<string>Icon</string>
+	<key>LSExecutableArchitectures</key>
+	<array>
+		<string>i386</string>
+		<string>x86_64</string>
+	</array>
+	<key>CFBundleShortVersionString</key>
+	<string>100</string>
+	<key>CFBundleVersion</key>
+	<string>0.1.0.0</string>
+	<key>CFBundleExecutable</key>
+	<string>Undynes-Target-Practice</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.anthonyj.undynetargetpractice</string>
+	<key>CFBundleName</key>
+	<string>Undyne&apos;s Target Practice</string>
+</dict>
+</plist>

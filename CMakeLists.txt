@@ -1,9 +1,16 @@
 cmake_minimum_required(VERSION 3.0.0 FATAL_ERROR)
 project(
     Undynes-Target-Practice
+    VERSION 1.0.0
     LANGUAGES CXX
     DESCRIPTION "UNDERTALE™ Undyne's Target Practice, you're goal is to survive as long as possible while Undyne is throws spears and you from all directions. "
 )
+
+
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH}" "${CMAKE_CURRENT_LIST_DIR}/CMake")
 
@@ -48,7 +55,5 @@ else()
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD 
     COMMAND ${CMAKE_COMMAND} -E copy ${RAYLIB_LIBS} "${CMAKE_BINARY_DIR}"
 )
-
-SET(CMAKE_INSTALL_RPATH “${ORIGIN}”)
 
 endif()
