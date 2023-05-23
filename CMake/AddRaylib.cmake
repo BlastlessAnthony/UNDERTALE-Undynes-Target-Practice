@@ -75,4 +75,12 @@ ENDIF()
 #We need to get the path of the shared libs somehow.
 add_subdirectory("${DEPENDENCY_DIR}/raylib-4.5.0")
 set(RAYLIB_BIN_DIR ${raylib_BINARY_DIR})
-file(GLOB_RECURSE RAYLIB_LIBS "${RAYLIB_BIN_DIR}/*.dylib")
+
+if (APPLE)
+    file(GLOB_RECURSE RAYLIB_LIBS "${RAYLIB_BIN_DIR}/*.dylib")
+elseif (LINUX)
+    file(GLOB_RECURSE RAYLIB_LIBS 
+        "${RAYLIB_BIN_DIR}/*.so" 
+        "${RAYLIB_BIN_DIR}/*.so.*"
+    )
+endif()

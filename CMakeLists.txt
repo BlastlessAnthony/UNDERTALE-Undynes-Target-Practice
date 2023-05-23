@@ -7,7 +7,6 @@ project(
 
 set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH}" "${CMAKE_CURRENT_LIST_DIR}/CMake")
 
-
 #Adding the dependencies
 set(DEPENDENCY_DIR "${CMAKE_CURRENT_LIST_DIR}/Dependencies/Third-Party")
 include(AddRaylib)
