@@ -1,4 +1,6 @@
-#pragma once
+#ifndef __ORION_FRAMEWORK_UTILITY_RANDOMSTRING_HPP__
+#define __ORION_FRAMEWORK_UTILITY_RANDOMSTRING_HPP__
+
 #include <string>
 #include <cstdint>
 #include <cstdlib>
@@ -13,3 +15,5 @@ std::string generateRandomString(uint64_t length) {
     std::generate_n(std::back_inserter(result), length, generator);
     return result;
 }
+
+#endif //__ORION_FRAMEWORK_UTILITY_RANDOMSTRING_HPP__
