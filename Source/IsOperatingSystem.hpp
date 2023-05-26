@@ -9,7 +9,8 @@ namespace OrionFramework {
 
             return _stricmp(OS_PLATFORM, OS.c_str()) == 0 ? 1 : 0;
         #else
-            return strcasecmp(OS_PLATFORM, OS.c_str()) == 0 ? 1 : 0;
+            
+            return std::string(OS_PLATFORM).compare(OS);
         #endif
     }
 }

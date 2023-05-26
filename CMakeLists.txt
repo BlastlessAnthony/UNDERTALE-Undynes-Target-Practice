@@ -52,8 +52,15 @@ if (NOT ${CMAKE_BUILD_TYPE} STREQUAL "Debug")
 
 else()
 
+add_custom_command(TARGET ${PROJECT_NAME} PRE_BUILD 
+    COMMAND ${CMAKE_COMMAND} -E make_directory "${CMAKE_BINARY_DIR}/res"
+)
+
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD 
     COMMAND ${CMAKE_COMMAND} -E copy ${RAYLIB_LIBS} "${CMAKE_BINARY_DIR}"
+    COMMAND ${CMAKE_COMMAND} -E copy ${PROJECT_ASSETS} "${CMAKE_BINARY_DIR}/res"
 )
+
+
 
 endif()
