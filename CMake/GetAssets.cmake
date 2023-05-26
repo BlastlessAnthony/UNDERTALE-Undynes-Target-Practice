@@ -1,0 +1,9 @@
+file(GLOB_RECURSE PROJECT_ASSETS CONFIGURE_DEPENDS
+    "${PROJECT_ASSETS_DIR}/*.wav"
+    "${PROJECT_ASSETS_DIR}/*.ogg"
+    "${PROJECT_ASSETS_DIR}/*.png"
+    "${PROJECT_ASSETS_DIR}/*.jpg"
+    "${PROJECT_ASSETS_DIR}/*.bmp"
+)
+
+message(STATUS "Assets: ${PROJECT_ASSETS}")

@@ -16,8 +16,7 @@ set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH}" "${CMAKE_CURRENT_LIST_DIR}/CMake")
 
 #Adding the dependencies
 set(DEPENDENCY_DIR "${CMAKE_CURRENT_LIST_DIR}/Dependencies/Third-Party")
-include(AddRaylib)
-include(AddRaylibCpp)
+include(GetDependencies)
 
 set(PROJECT_SOURCE_DIR "${CMAKE_CURRENT_LIST_DIR}/Source")
 file(GLOB_RECURSE PROJECT_SOURCES CONFIGURE_DEPENDS 
@@ -27,9 +26,13 @@ file(GLOB_RECURSE PROJECT_SOURCES CONFIGURE_DEPENDS
     "${PROJECT_SOURCE_DIR}/*.hpp"
 )
 
-add_executable(${PROJECT_NAME} ${PROJECT_SOURCES})
+set(PROJECT_ASSETS_DIR "${CMAKE_CURRENT_LIST_DIR}/Assets")
+include(GetAssets)
+
+add_executable(${PROJECT_NAME} ${PROJECT_SOURCES} ${PROJECT_ASSETS})
 
 target_include_directories(${PROJECT_NAME} PRIVATE
+    "${DEPENDENCY_DIR}/raylib-4.5.0/src"
     "${DEPENDENCY_DIR}/raylib-cpp-4.5.0/include"
 )
 
@@ -37,14 +40,6 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     raylib
 )
 
-set(PROJECT_ASSETS_DIR ${CMAKE_CURRENT_LIST_DIR}/Assets)
-file(GLOB_RECURSE PROJECT_ASSETS 
-    "${PROJECT_ASSETS_DIR}/*.wav"
-    "${PROJECT_ASSETS_DIR}/*.ogg"
-    "${PROJECT_ASSETS_DIR}/*.png"
-    "${PROJECT_ASSETS_DIR}/*.jpg"
-    "${PROJECT_ASSETS_DIR}/*.bmp"
-)
 
 if (NOT ${CMAKE_BUILD_TYPE} STREQUAL "Debug")
 
@@ -53,12 +48,13 @@ if (NOT ${CMAKE_BUILD_TYPE} STREQUAL "Debug")
 else()
 
 add_custom_command(TARGET ${PROJECT_NAME} PRE_BUILD 
-    COMMAND ${CMAKE_COMMAND} -E make_directory "${CMAKE_BINARY_DIR}/res"
+    COMMAND ${CMAKE_COMMAND} -E make_directory "${CMAKE_BINARY_DIR}/Resources"
+    
 )
 
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD 
     COMMAND ${CMAKE_COMMAND} -E copy ${RAYLIB_LIBS} "${CMAKE_BINARY_DIR}"
-    COMMAND ${CMAKE_COMMAND} -E copy ${PROJECT_ASSETS} "${CMAKE_BINARY_DIR}/res"
+    COMMAND ${CMAKE_COMMAND} -E copy ${PROJECT_ASSETS} "${CMAKE_BINARY_DIR}/Resources"
 )
 
 

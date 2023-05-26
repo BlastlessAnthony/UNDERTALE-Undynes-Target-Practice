@@ -27,7 +27,7 @@ namespace OrionFramework {
 
         } else if (isOperatingSystem(OS_LINUX)) {
 
-            if (isInDebugMode()) {return std::string(TextFormat("%sres", GetApplicationDirectory()));}
+            if (isInDebugMode()) {return std::string(TextFormat("%sResources", GetApplicationDirectory()));}
             return std::string(TextFormat("%s../share/res", GetApplicationDirectory()));
 
         } else { std::cout << "ORION FRAMEWORK [ERROR]: That platform doesn't have a specified resource path." << std::endl; exit(EXIT_FAILURE); }
