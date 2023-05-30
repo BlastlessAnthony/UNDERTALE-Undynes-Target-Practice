@@ -15,8 +15,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH}" "${CMAKE_CURRENT_LIST_DIR}/CMake")
 
 #Adding the dependencies
-set(DEPENDENCY_DIR "${CMAKE_CURRENT_LIST_DIR}/Dependencies/Third-Party")
-include(GetDependencies)
+set(DEPENDENCY_DIR "${CMAKE_CURRENT_LIST_DIR}/Dependencies")
+add_subdirectory("${DEPENDENCY_DIR}/Orion")
 
 set(PROJECT_SOURCE_DIR "${CMAKE_CURRENT_LIST_DIR}/Source")
 file(GLOB_RECURSE PROJECT_SOURCES CONFIGURE_DEPENDS 
@@ -31,13 +31,13 @@ include(GetAssets)
 
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCES} ${PROJECT_ASSETS})
 
-target_include_directories(${PROJECT_NAME} PRIVATE
-    "${DEPENDENCY_DIR}/raylib-4.5.0/src"
-    "${DEPENDENCY_DIR}/raylib-cpp-4.5.0/include"
+target_link_libraries(${PROJECT_NAME} PRIVATE
+    Orion
 )
 
-target_link_libraries(${PROJECT_NAME} PRIVATE
-    raylib
+target_include_directories(${PROJECT_NAME}
+    PRIVATE
+        "${DEPENDENCY_DIR}/Orion/Include"
 )
 
 
@@ -54,7 +54,7 @@ add_custom_command(TARGET ${PROJECT_NAME} PRE_BUILD
 
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD 
     COMMAND ${CMAKE_COMMAND} -E copy ${RAYLIB_LIBS} "${CMAKE_BINARY_DIR}"
-    COMMAND ${CMAKE_COMMAND} -E copy ${PROJECT_ASSETS} "${CMAKE_BINARY_DIR}/Resources"
+    #COMMAND ${CMAKE_COMMAND} -E copy ${PROJECT_ASSETS} "${CMAKE_BINARY_DIR}/Resources"
 )
 
 
